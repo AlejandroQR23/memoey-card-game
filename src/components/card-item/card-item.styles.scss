@@ -1,0 +1,11 @@
+.card {
+  width: 240px;
+  height: 240px;
+  overflow: hidden;
+  transition: transform 0.7s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: rotate(5deg);
+  }
+}

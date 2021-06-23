@@ -5,6 +5,7 @@ import './App.css';
 import { Cats, ICard } from './utilities/interfaces';
 import { CardsGrid } from './components/cards-grid/cards-grid.component';
 import { ScoreBoard } from './components/scoreboard/scoreboard.component';
+import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
 
 function App() {
   // * The Cat API
@@ -42,10 +43,9 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App container">
       <ScoreBoard />
-      {loading ? 'loading...' : <p>loaded</p>}
-      <CardsGrid cards={cards} />
+      {loading ? <LoadingSpinner /> : <CardsGrid cards={cards} />}
     </div>
   );
 }
