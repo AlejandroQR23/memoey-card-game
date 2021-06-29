@@ -31,6 +31,7 @@ function App() {
     })();
   }, []);
 
+  // * Game functions
   const initCards = (cards: Cats[]): ICard[] => {
     let minifiedCards: ICard[] = [];
     for (const card of cards) {
