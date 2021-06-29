@@ -11,7 +11,7 @@ export const CardItem = ({
 }) => (
   <div className="card-item col">
     <div
-      className="card border-primary mx-auto shadow-lg p-3 mb-5 bg-body rounded"
+      className="card border-2 border-primary mx-auto shadow-lg p-3 mb-5 bg-body rounded"
       onClick={() => {
         handleCardClick(id);
       }}
