@@ -1,7 +1,6 @@
 export interface ICard  {
   id: string;
   image: string;
-  touched?: boolean;
 }
 
 export interface Cats {
