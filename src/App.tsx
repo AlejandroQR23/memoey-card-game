@@ -6,6 +6,7 @@ import { Cats, ICard } from './utilities/interfaces';
 import { CardsGrid } from './components/cards-grid/cards-grid.component';
 import { ScoreBoard } from './components/scoreboard/scoreboard.component';
 import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
+import { messages } from './utilities/messages';
 
 function App() {
   // * The Cat API
@@ -14,6 +15,7 @@ function App() {
   // * Hooks
   const [cards, setCards] = useState<ICard[]>([]);
   const [touched, setTouched] = useState<string[]>([]);
+  const [message, setMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const [score, setScore] = useState<number>(0);
   const [bestScore, setBestScore] = useState<number>(0);
@@ -25,6 +27,7 @@ function App() {
         if (!response.ok) throw new Error('Couldnt find the url');
         setCards(initCards(await response.json()));
         setLoading(false);
+        setMessage('TOUCH A CAT TO START. CAREFUL WITH THE BELLY!');
       } catch (e) {
         console.error(e.message);
       }
@@ -50,10 +53,10 @@ function App() {
     if (!touched.includes(id)) {
       setTouched((prevState) => [...prevState, id]);
       setScore((prevState) => prevState + 1);
+      setMessage(messages[score]);
     } else {
       resetGame();
     }
-
     return [...cards].sort(() => Math.random() - 0.5);
   };
 
@@ -63,12 +66,13 @@ function App() {
     }
     setScore(0);
     setTouched([]);
-    console.log('game over');
+    setMessage('GAME OVER');
   };
 
   return (
     <div className="App container">
       <ScoreBoard score={score} bestScore={bestScore} />
+      <div className="text-muted my-3">{message}</div>
       {loading ? <LoadingSpinner /> : <CardsGrid cards={cards} handleCardClick={handleCardClick} />}
     </div>
   );
