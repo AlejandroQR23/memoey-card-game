@@ -1,5 +1,5 @@
-// import React from 'react';
 import { useEffect, useState } from 'react';
+
 import './App.css';
 
 import { Cats, ICard } from './utilities/interfaces';
@@ -13,12 +13,12 @@ function App() {
   const apiUrl: string = `https://api.thecatapi.com/v1/images/search?size=small&limit=9&mime_types=jpg`;
 
   // * Hooks
-  const [cards, setCards] = useState<ICard[]>([]);
-  const [touched, setTouched] = useState<string[]>([]);
-  const [message, setMessage] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(true);
-  const [score, setScore] = useState<number>(0);
   const [bestScore, setBestScore] = useState<number>(0);
+  const [cards, setCards] = useState<ICard[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [message, setMessage] = useState<string>('');
+  const [score, setScore] = useState<number>(0);
+  const [touched, setTouched] = useState<string[]>([]);
 
   useEffect(() => {
     (async () => {
