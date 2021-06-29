@@ -2,7 +2,7 @@
 
 ## Description
 
-This app were build using React, Bootstrap ans Sass.
+This app were built using React, Bootstrap ans Sass.
 It lets you create your own CV with your personal information, education history and work experience. You can see your live changes and when you are done, you can click the print button and download the CV in as a PDF.
 
 ## Live Demo
