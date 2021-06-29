@@ -9,7 +9,7 @@ import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.compone
 
 function App() {
   // * The Cat API
-  const apiUrl: string = `https://api.thecatapi.com/v1/images/search?size=${'small'}&limit=${9}`;
+  const apiUrl: string = `https://api.thecatapi.com/v1/images/search?size=small&limit=9&mime_types=jpg`;
 
   // * Hooks
   const [cards, setCards] = useState<ICard[]>([]);
