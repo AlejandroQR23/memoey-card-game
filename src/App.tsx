@@ -9,14 +9,14 @@ import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.compone
 
 function App() {
   // * The Cat API
-  const baseUrl: string = 'https://api.thecatapi.com/v1/images/search?';
-  const limit: number = 9;
-  const size: string = 'small';
-  const apiUrl: string = `${baseUrl}size=${size}&limit=${limit}`;
+  const apiUrl: string = `https://api.thecatapi.com/v1/images/search?size=${'small'}&limit=${9}`;
 
   // * Hooks
   const [cards, setCards] = useState<ICard[]>([]);
+  const [touched, setTouched] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [score, setScore] = useState<number>(0);
+  const [bestScore, setBestScore] = useState<number>(0);
 
   useEffect(() => {
     (async () => {
@@ -35,17 +35,40 @@ function App() {
     let minifiedCards: ICard[] = [];
     for (const card of cards) {
       const { id, url } = card;
-      minifiedCards.push({ id, image: url, touched: false });
+      minifiedCards.push({ id, image: url });
     }
-    console.log(minifiedCards);
 
     return minifiedCards;
   };
 
+  const handleCardClick = (id: string): void => {
+    setCards(playRound(id));
+  };
+
+  const playRound = (id: string): ICard[] => {
+    if (!touched.includes(id)) {
+      setTouched((prevState) => [...prevState, id]);
+      setScore((prevState) => prevState + 1);
+    } else {
+      resetGame();
+    }
+
+    return [...cards].sort(() => Math.random() - 0.5);
+  };
+
+  const resetGame = () => {
+    if (score > bestScore) {
+      setBestScore(score);
+    }
+    setScore(0);
+    setTouched([]);
+    console.log('game over');
+  };
+
   return (
     <div className="App container">
-      <ScoreBoard />
-      {loading ? <LoadingSpinner /> : <CardsGrid cards={cards} />}
+      <ScoreBoard score={score} bestScore={bestScore} />
+      {loading ? <LoadingSpinner /> : <CardsGrid cards={cards} handleCardClick={handleCardClick} />}
     </div>
   );
 }
