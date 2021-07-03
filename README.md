@@ -3,7 +3,7 @@
 ## Description
 
 This app were built using React, Bootstrap ans Sass.
-It lets you create your own CV with your personal information, education history and work experience. You can see your live changes and when you are done, you can click the print button and download the CV in as a PDF.
+It lets you play a memory card game where you got to touch every card once. You win if you touch every single card and loose if you touch a card twice.
 
 ## Live Demo
 
